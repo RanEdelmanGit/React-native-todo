@@ -26,7 +26,7 @@ export default function Task({ task, onToggle, onDelete }) {
                 <MaterialCommunityIcons
                     name="trash-can-outline"
                     size={24}
-                    color="white"
+                    color="#7F7F7F"
                 />
             </Pressable>
         </View>
@@ -36,11 +36,13 @@ export default function Task({ task, onToggle, onDelete }) {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
-        backgroundColor: "#4c4c4c",
+        backgroundColor: "#333333",
         padding: 10,
         margin: 5,
         justifyContent: "space-between",
         alignItems: "center",
+        borderWidth: 0.5,
+        borderColor: "#7F7F7F",
         borderRadius: 10,
         minHeight: 70, // Ensures the container has a minimum height
     },
@@ -56,5 +58,6 @@ const styles = StyleSheet.create({
     },
     checkedText: {
         textDecorationLine: "line-through", // Style for line-through text
+        opacity: 0.5,
     },
 });

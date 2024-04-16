@@ -4,6 +4,7 @@ import { AntDesign } from "@expo/vector-icons";
 
 export default function AddTask({ tasks, setTasks }) {
   const [newTask, setNewTask] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
 
   const onPress = () => {
     if (newTask.trim() !== "") {
@@ -20,11 +21,13 @@ export default function AddTask({ tasks, setTasks }) {
   return (
     <View style={styles.container}>
       <TextInput
-        placeholder="Add task"
-        placeholderTextColor="#ffffff"
-        style={styles.search}
+        placeholder="Type your task..."
+        placeholderTextColor="#646464"
+        style={isFocused ? styles.searchFocused : styles.search}
         onChangeText={setNewTask}
         value={newTask}
+        onFocus={() => setIsFocused(true)}  
+        onBlur={() => setIsFocused(false)} 
       />
       <Pressable style={styles.button} onPress={onPress}>
         <Text><AntDesign name="pluscircleo" size={17} color="white" /></Text>
@@ -36,19 +39,31 @@ export default function AddTask({ tasks, setTasks }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    backgroundColor: "black",
+    backgroundColor: "transparent",
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",
     top: 160,
   },
   search: {
-    backgroundColor: "rgb(38, 38, 38)",
+    backgroundColor: "#333333",
     color: "#f2f2f2",
     width: "75%",
     height: 50,
     borderRadius: 5,
     paddingLeft: 10,
+    paddingRight: 10,
+  },
+  searchFocused: {
+    backgroundColor: "#333333",
+    color: "#f2f2f2",
+    width: "75%",
+    height: 50,
+    borderRadius: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderColor: '#5E60CE',  // Choose a noticeable color when focused
+    borderWidth: 1,       // Set border width
   },
   button: {
     margin: 5,
